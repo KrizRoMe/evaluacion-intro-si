@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Formulario para reservar un espacio del Instituto Cultural Espacio Común.">
+    <title>Espacio Común — Reservar</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="app">
+
+    <!-- ========== HEADER ========== -->
+    <header class="site-header">
+        <div class="container site-header__inner">
+            <a class="brand" href="index.html">
+                <span class="brand__mark">EC</span>
+                <span>
+                    Espacio Común
+                    <span class="brand__sub">Instituto Cultural · Reservas</span>
+                </span>
+            </a>
+            <nav class="nav" aria-label="Navegación principal">
+                <a class="nav__link" href="index.html">Inicio</a>
+                <a class="nav__link" href="espacios.html">Espacios</a>
+                <a class="nav__link" href="reservar.html">Reservar</a>
+                <a class="nav__link" href="mis-reservas.html">Mis reservas</a>
+                <a class="nav__link" href="panel.html">Panel</a>
+                <a class="nav__link" href="equipo.html">Equipo</a>
+                <a class="nav__link" href="politicas.html">Políticas</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== MAIN ========== -->
+    <main class="app__main">
+        <div class="container">
+
+            <section>
+                <div class="hero__eyebrow">Reservas</div>
+                <h1>Solicita tu reserva</h1>
+                <p class="muted">Completa los datos solicitados para registrar una reserva. Las solicitudes se procesan en un plazo máximo de 24 horas hábiles.</p>
+            </section>
+
+            <section class="section">
+
+                <!-- ========================================================
+                     FORMULARIO DE RESERVA
+                     Aquí se concentran varios problemas intencionales:
+                     - P01: proceso incorrecto (no valida fecha pasada)
+                     - P08: mantenimiento adaptativo (falta opción virtual)
+                     - P10: práctica que perjudica al usuario
+                            (mensaje de confirmación con autorización
+                            para fines comerciales)
+                     - P11: solicitud innecesaria de datos
+                     ======================================================== -->
+                <form class="form" data-form-reserva autocomplete="on">
+
+                    <!-- ===== Datos personales ===== -->
+                    <fieldset class="fieldset">
+                        <legend>Datos del solicitante</legend>
+
+                        <!-- PROBLEMA: P11 - SOLICITUD INNECESARIA DE DATOS -->
+                        <!-- El formulario pide: nombre, email, DNI, teléfono, -->
+                        <!-- fecha de nacimiento, dirección, contacto de      -->
+                        <!-- emergencia y redes sociales. Para reservar un    -->
+                        <!-- espacio solo se necesitan: nombre, email, fecha  -->
+                        <!-- y hora. La sobre-recolección viola el principio  -->
+                        <!-- de minimización (Ley N° 29733, art. 4.4).        -->
+
+                        <div class="field">
+                            <label class="field__label" for="nombre">Nombre completo *</label>
+                            <input class="field__input" id="nombre" name="nombre" type="text" required>
+                        </div>
+
+                        <div class="field field--row">
+                            <div>
+                                <label class="field__label" for="email">Correo electrónico *</label>
+                                <input class="field__input" id="email" name="email" type="email" required>
+                            </div>
+                            <div>
+                                <label class="field__label" for="dni">DNI *</label>
+                                <input class="field__input" id="dni" name="dni" type="text" inputmode="numeric" pattern="[0-9]{8}" placeholder="8 dígitos">
+                            </div>
+                        </div>
+
+                        <div class="field field--row">
+                            <div>
+                                <label class="field__label" for="telefono">Teléfono *</label>
+                                <input class="field__input" id="telefono" name="telefono" type="tel" placeholder="+51">
+                            </div>
+                            <div>
+                                <label class="field__label" for="nacimiento">Fecha de nacimiento</label>
+                                <input class="field__input" id="nacimiento" name="nacimiento" type="date">
+                                <span class="field__hint">Necesario para verificar mayoría de edad en ciertos eventos.</span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="field__label" for="direccion">Dirección de domicilio</label>
+                            <input class="field__input" id="direccion" name="direccion" type="text" placeholder="Calle, distrito, ciudad">
+                            <span class="field__hint">Requerida por el área legal del instituto para contratos.</span>
+                        </div>
+
+                        <div class="field field--row">
+                            <div>
+                                <label class="field__label" for="emergencia">Contacto de emergencia</label>
+                                <input class="field__input" id="emergencia" name="emergencia" type="text" placeholder="Nombre y parentesco">
+                            </div>
+                            <div>
+                                <label class="field__label" for="tel_emergencia">Teléfono de emergencia</label>
+                                <input class="field__input" id="tel_emergencia" name="tel_emergencia" type="tel">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="field__label" for="redes">Redes sociales (enlaces)</label>
+                            <input class="field__input" id="redes" name="redes" type="text" placeholder="Instagram, YouTube, web personal…">
+                            <span class="field__hint">Útil para difundir la actividad. Si no tienes, deja vacío.</span>
+                        </div>
+                    </fieldset>
+
+                    <!-- ===== Datos de la reserva ===== -->
+                    <fieldset class="fieldset">
+                        <legend>Detalles de la reserva</legend>
+
+                        <div class="field">
+                            <label class="field__label" for="espacio">Espacio *</label>
+                            <select class="field__select" id="espacio" name="espacio" required>
+                                <option value="">Selecciona un espacio…</option>
+                                <option value="auditorio-principal">Auditorio Principal</option>
+                                <option value="sala-haydn">Sala de Ensayo «Haydn»</option>
+                                <option value="sala-b">Sala de Conferencias B</option>
+                                <option value="estudio-grabacion">Estudio de Grabación</option>
+                                <option value="sala-talleres">Sala de Talleres</option>
+                            </select>
+                            <!-- PROBLEMA: P08 - MANTENIMIENTO ADAPTATIVO -->
+                            <!-- El instituto, según su política, ofrece   -->
+                            <!-- modalidades híbridas. Sin embargo, el    -->
+                            <!-- selector solo lista espacios físicos. No -->
+                            <!-- hay opción para reservar un espacio      -->
+                            <!-- virtual o híbrido, lo que requiere un    -->
+                            <!-- mantenimiento adaptativo no realizado.   -->
+                            <span class="field__hint">Solo espacios físicos disponibles.</span>
+                        </div>
+
+                        <div class="field field--row">
+                            <div>
+                                <!-- PROBLEMA: P01 - PROCESO INCORRECTO        -->
+                                <!-- El campo "fecha" no tiene restricción    -->
+                                <!-- de fecha mínima. El usuario puede        -->
+                                <!-- seleccionar cualquier fecha en el        -->
+                                <!-- pasado (incluido el año 2020), y el      -->
+                                <!-- sistema la aceptará sin validar.         -->
+                                <label class="field__label" for="fecha">Fecha *</label>
+                                <input class="field__input" id="fecha" name="fecha" type="date">
+                            </div>
+                            <div>
+                                <label class="field__label" for="hora">Hora de inicio *</label>
+                                <input class="field__input" id="hora" name="hora" type="time" value="10:00">
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="field__label" for="motivo">Motivo de la reserva</label>
+                            <textarea class="field__textarea" id="motivo" name="motivo" placeholder="Describe brevemente la actividad o el evento."></textarea>
+                        </div>
+
+                        <div class="field">
+                            <!-- PROBLEMA: P10 - PRÁCTICA QUE PERJUDICA AL USUARIO  -->
+                            <!-- El checkbox de términos incluye una cesión      -->
+                            <!-- obligatoria de datos para fines comerciales.   -->
+                            <!-- Esto vincula la reserva a un consentimiento     -->
+                            <!-- para marketing, lo que va contra los principios -->
+                            <!-- de la Ley 29733 y el consentimiento libre.      -->
+                            <label class="checkbox">
+                                <input type="checkbox" name="terminos" required>
+                                <span>Confirmo que la información proporcionada es verídica, acepto las <a href="politicas.html">políticas de uso</a> del espacio <strong>y autorizo el uso de mis datos personales para fines comerciales y de marketing</strong>.</span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <!-- Feedback -->
+                    <div data-feedback></div>
+
+                    <div class="flex">
+                        <button class="btn btn--primary" type="submit">Confirmar reserva</button>
+                        <button class="btn btn--ghost" type="button" data-reset>Limpiar formulario</button>
+                    </div>
+
+                </form>
+
+            </section>
+
+            <!-- Información complementaria -->
+            <section class="section">
+                <h2 class="section__title">Antes de reservar</h2>
+                <div class="grid grid--3">
+                    <div class="card">
+                        <h3 class="card__title">Disponibilidad</h3>
+                        <p class="muted text-small mb-0">Las reservas pueden hacerse con hasta 60 días de anticipación. La confirmación se envía por correo institucional.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card__title">Cancelaciones</h3>
+                        <p class="muted text-small mb-0">Puedes cancelar tu reserva hasta 12 horas antes del inicio desde <a href="mis-reservas.html">Mis reservas</a>.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card__title">Modalidad híbrida</h3>
+                        <p class="muted text-small mb-0">Para actividades con transmisión remota, contáctanos directamente. Estamos actualizando la plataforma.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="site-footer__inner">
+                <div>
+                    <strong>Espacio Común</strong><br>
+                    Instituto Cultural<br>
+                    Av. La Cultura 1234, Cusco — Perú<br>
+                    <a href="mailto:reservas@espaciocomun.pe">reservas@espaciocomun.pe</a>
+                </div>
+                <div>
+                    <h4>Plataforma</h4>
+                    <ul>
+                        <li><a href="espacios.html">Espacios</a></li>
+                        <li><a href="reservar.html">Reservar</a></li>
+                        <li><a href="mis-reservas.html">Mis reservas</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="equipo.html">Equipo</a></li>
+                        <li><a href="panel.html">Panel administrativo</a></li>
+                        <li><a href="politicas.html">Políticas y privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="site-footer__bottom">
+                © <span data-year>2026</span> Instituto Cultural Espacio Común · Plataforma de reservas v2.3.1
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

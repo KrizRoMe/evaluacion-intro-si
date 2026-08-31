@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Panel administrativo de la plataforma de reservas Espacio Común.">
+    <title>Espacio Común — Panel administrativo</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="app">
+
+    <!-- ========== HEADER ========== -->
+    <header class="site-header">
+        <div class="container site-header__inner">
+            <a class="brand" href="index.html">
+                <span class="brand__mark">EC</span>
+                <span>
+                    Espacio Común
+                    <span class="brand__sub">Instituto Cultural · Reservas</span>
+                </span>
+            </a>
+            <nav class="nav" aria-label="Navegación principal">
+                <a class="nav__link" href="index.html">Inicio</a>
+                <a class="nav__link" href="espacios.html">Espacios</a>
+                <a class="nav__link" href="reservar.html">Reservar</a>
+                <a class="nav__link" href="mis-reservas.html">Mis reservas</a>
+                <a class="nav__link" href="panel.html">Panel</a>
+                <a class="nav__link" href="equipo.html">Equipo</a>
+                <a class="nav__link" href="politicas.html">Políticas</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============================================================
+         PROBLEMA: P04 - CONFIDENCIALIDAD
+         El "panel administrativo" carga sin autenticación previa.
+         Cualquier visitante puede ver el listado completo de
+         reservas con DNI, correo y teléfono en texto plano. No hay
+         login, ni token, ni verificación de rol. Esto expone
+         datos personales de todos los usuarios.
+         ============================================================ -->
+
+    <!-- ========== MAIN ========== -->
+    <main class="app__main">
+        <div class="container">
+
+            <section>
+                <div class="hero__eyebrow">Administración</div>
+                <div class="flex-between">
+                    <h1>Panel de administración</h1>
+                    <span class="badge badge--warn">Sesión iniciada como: <em>invitado</em></span>
+                </div>
+                <p class="muted">Vista general de las reservas, los usuarios y los espacios del instituto. Esta vista está restringida a personal autorizado del Espacio Común.</p>
+            </section>
+
+            <!-- Indicadores -->
+            <section class="section">
+                <div class="grid grid--4">
+                    <div class="stat">
+                        <div class="stat__label">Reservas hoy</div>
+                        <div class="stat__value">27</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat__label">Usuarios activos</div>
+                        <div class="stat__value">214</div>
+                        <div class="stat__delta">+8 % mes</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat__label">Incidencias abiertas</div>
+                        <div class="stat__value">3</div>
+                        <div class="stat__delta stat__delta--neg">+1 vs. ayer</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat__label">Ocupación semanal</div>
+                        <div class="stat__value">71 %</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================
+                 PROBLEMA: P09 - DECISIÓN AUTOMATIZADA POCO TRANSPARENTE
+                 El sistema de "Scoring automático de usuarios" asigna
+                 puntajes 0-100 sin explicar el algoritmo. Un usuario
+                 aparece con "Score: 15/100 - Riesgo alto" y se toman
+                 decisiones (bloqueos, alertas) a partir de un valor
+                 cuyo cálculo no es auditable ni justificable.
+                 ============================================================ -->
+
+            <section class="section">
+                <div class="section__head">
+                    <h2 class="section__title">Scoring automático de usuarios</h2>
+                    <span class="muted text-small">Modelo v3.2 · recalculado cada 6 h</span>
+                </div>
+
+                <div class="notice">
+                    <strong>Aviso:</strong>
+                    El puntaje se calcula mediante un modelo interno propietario.
+                    Los administradores pueden usar este valor como insumo para
+                    decisiones de revisión manual, pero no se publica la fórmula.
+                </div>
+
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Reservas (90 d)</th>
+                                <th>Cancelaciones</th>
+                                <th>Score</th>
+                                <th>Acción sugerida</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ana Mendoza</td>
+                                <td>14</td>
+                                <td>0</td>
+                                <td><span class="score score--high"><span class="score__dot"></span>92 / 100</span></td>
+                                <td><button class="btn btn--ghost btn--small" data-panel-action="ver">Ver</button></td>
+                            </tr>
+                            <tr>
+                                <td>Carlos Quispe Mamani</td>
+                                <td>9</td>
+                                <td>1</td>
+                                <td><span class="score score--high"><span class="score__dot"></span>78 / 100</span></td>
+                                <td><button class="btn btn--ghost btn--small" data-panel-action="ver">Ver</button></td>
+                            </tr>
+                            <tr>
+                                <!-- ==========================================
+                                     PROBLEMA: P09 - score 15/100 Riesgo alto
+                                     sin explicación del algoritmo
+                                     ========================================== -->
+                                <td>Roberto Salcedo</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td><span class="score score--low"><span class="score__dot"></span>15 / 100 — Riesgo alto</span></td>
+                                <td>
+                                    <button class="btn btn--ghost btn--small" data-panel-action="bloquear">Bloquear</button>
+                                    <button class="btn btn--ghost btn--small" data-panel-action="ver">Ver</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>María Huamán Vargas</td>
+                                <td>22</td>
+                                <td>2</td>
+                                <td><span class="score score--mid"><span class="score__dot"></span>64 / 100</span></td>
+                                <td><button class="btn btn--ghost btn--small" data-panel-action="ver">Ver</button></td>
+                            </tr>
+                            <tr>
+                                <td>Diego Quispe</td>
+                                <td>6</td>
+                                <td>0</td>
+                                <td><span class="score score--high"><span class="score__dot"></span>81 / 100</span></td>
+                                <td><button class="btn btn--ghost btn--small" data-panel-action="ver">Ver</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ============================================================
+                 Listado completo de reservas con datos sensibles
+
+                 Aquí se concentran los problemas:
+                 - P04: confidencialidad (sin login, datos en claro)
+                 - P12: exposición de DNI sin máscara
+                 ============================================================ -->
+
+            <section class="section">
+                <div class="section__head">
+                    <h2 class="section__title">Reservas — listado completo</h2>
+                    <div>
+                        <button class="btn btn--ghost btn--small" data-panel-action="exportar">Exportar CSV</button>
+                    </div>
+                </div>
+
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Fecha</th>
+                                <th>Espacio</th>
+                                <th>Usuario</th>
+                                <!-- PROBLEMA: P04 - columna con datos sensibles visibles sin auth -->
+                                <th>DNI</th>
+                                <th>Email</th>
+                                <th>Teléfono</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>RES-1042</td>
+                                <td>2026-09-12 · 19:30</td>
+                                <td>Auditorio Principal</td>
+                                <td data-user>Ana Mendoza</td>
+                                <!-- PROBLEMA: P12 - DNI sin máscara (45678901) -->
+                                <td>45678901</td>
+                                <td>ana.mendoza@correo.pe</td>
+                                <td>+51 984 512 003</td>
+                                <td><span class="badge badge--ok">Confirmada</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>RES-1043</td>
+                                <td>2026-09-18 · 10:00</td>
+                                <td>Sala de Ensayo «Haydn»</td>
+                                <td data-user>Carlos Quispe Mamani</td>
+                                <td>10234567</td>
+                                <td>carlos.qm@correo.pe</td>
+                                <td>+51 956 778 211</td>
+                                <td><span class="badge badge--warn">Pendiente</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>RES-1044</td>
+                                <td>2026-02-30 · 17:00</td>
+                                <td>Estudio de Grabación</td>
+                                <td data-user>Carlos Quispe Mamani</td>
+                                <td>10234567</td>
+                                <td>carlos.qm@correo.pe</td>
+                                <td>+51 956 778 211</td>
+                                <td><span class="badge badge--ok">Confirmada</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>RES-1045</td>
+                                <td>2026-10-02 · 18:00</td>
+                                <td>Sala de Conferencias B</td>
+                                <td data-user>María Huamán Vargas</td>
+                                <td>70819263</td>
+                                <td>maria.huaman@correo.pe</td>
+                                <td>+51 999 201 442</td>
+                                <td><span class="badge badge--warn">Pendiente</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>RES-1046</td>
+                                <td>2026-09-26 · 20:00</td>
+                                <td>Auditorio Principal</td>
+                                <td data-user>Rosa Ccanto</td>
+                                <td>44567890</td>
+                                <td>rosa.ccanto@correo.pe</td>
+                                <td>+51 984 330 718</td>
+                                <td><span class="badge badge--ok">Confirmada</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>RES-1047</td>
+                                <td>2026-08-22 · 15:00</td>
+                                <td>Sala de Cine «Vallejo»</td>
+                                <td data-user>Lucía Parihuana</td>
+                                <td>55667788</td>
+                                <td>lucia.ph@correo.pe</td>
+                                <td>+51 944 112 998</td>
+                                <td><span class="badge badge--muted">Finalizada</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>RES-1048</td>
+                                <td>2026-08-10 · 11:00</td>
+                                <td>Sala de Talleres</td>
+                                <td data-user>Jorge Condori</td>
+                                <td>33445566</td>
+                                <td>jorge.condori@correo.pe</td>
+                                <td>+51 972 803 115</td>
+                                <td><span class="badge badge--danger">Cancelada</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>RES-1049</td>
+                                <td>2026-09-30 · 09:00</td>
+                                <td>Estudio de Grabación</td>
+                                <td data-user>Patricia Sotomayor</td>
+                                <td>77889900</td>
+                                <td>patricia.s@correo.pe</td>
+                                <td>+51 951 776 442</td>
+                                <td><span class="badge badge--ok">Confirmada</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>RES-1050</td>
+                                <td>2026-10-08 · 16:30</td>
+                                <td>Sala Polivalente «Cusco»</td>
+                                <td data-user>Diego Quispe</td>
+                                <td>22114455</td>
+                                <td>diego.q@correo.pe</td>
+                                <td>+51 933 401 226</td>
+                                <td><span class="badge badge--warn">Pendiente</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>RES-1051</td>
+                                <td>2026-07-15 · 19:00</td>
+                                <td>Sala de Conferencias B</td>
+                                <td data-user>Miguel Ángel Torres</td>
+                                <td>66554433</td>
+                                <td>miguel.torres@correo.pe</td>
+                                <td>+51 988 220 119</td>
+                                <td><span class="badge badge--muted">Finalizada</span></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ============================================================
+                 PROBLEMA: P02 - COMPONENTE MAL UTILIZADO
+                 La sección "Equipo del sistema" lista al "Sistema"
+                 como si fuera una persona más del equipo, con email
+                 y avatar. Esto confunde Personas vs Software: el
+                 sistema NO es un integrante humano del equipo,
+                 es un componente de software. Debería aparecer en
+                 una sección separada (Componentes / Software).
+                 ============================================================ -->
+
+            <section class="section">
+                <div class="section__head">
+                    <h2 class="section__title">Equipo del sistema</h2>
+                </div>
+
+                <div class="grid grid--3">
+
+                    <!-- Persona real -->
+                    <div class="person">
+                        <div class="person__avatar">LR</div>
+                        <div>
+                            <p class="person__name">Lucía Rojas</p>
+                            <p class="person__role">Coordinadora de programación cultural</p>
+                            <p class="person__meta"><a href="mailto:lucia.rojas@espaciocomun.pe">lucia.rojas@espaciocomun.pe</a></p>
+                        </div>
+                    </div>
+
+                    <div class="person">
+                        <div class="person__avatar">PM</div>
+                        <div>
+                            <p class="person__name">Pedro Mamani</p>
+                            <p class="person__role">Administrador de espacios</p>
+                            <p class="person__meta"><a href="mailto:pedro.mamani@espaciocomun.pe">pedro.mamani@espaciocomun.pe</a></p>
+                        </div>
+                    </div>
+
+                    <div class="person">
+                        <div class="person__avatar">JC</div>
+                        <div>
+                            <p class="person__name">Julio César Napa</p>
+                            <p class="person__role">Soporte técnico</p>
+                            <p class="person__meta"><a href="mailto:jcnapa@espaciocomun.pe">jcnapa@espaciocomun.pe</a></p>
+                        </div>
+                    </div>
+
+                    <div class="person">
+                        <div class="person__avatar">VC</div>
+                        <div>
+                            <p class="person__name">Valeria Choque</p>
+                            <p class="person__role">Desarrolladora web</p>
+                            <p class="person__meta"><a href="mailto:valeria.choque@espaciocomun.pe">valeria.choque@espaciocomun.pe</a></p>
+                        </div>
+                    </div>
+
+                    <div class="person">
+                        <div class="person__avatar">RT</div>
+                        <div>
+                            <p class="person__name">Rosa Tito</p>
+                            <p class="person__role">Gestora de datos</p>
+                            <p class="person__meta"><a href="mailto:rosa.tito@espaciocomun.pe">rosa.tito@espaciocomun.pe</a></p>
+                        </div>
+                    </div>
+
+                    <!-- ====================================================
+                         PROBLEMA: P02 - "Sistema" listado como persona
+                         Aparece con avatar (EC), email y rol, igual que
+                         los integrantes humanos. Esto mezcla Personas
+                         con Software (componente del SI).
+                         ==================================================== -->
+                    <div class="person">
+                        <div class="person__avatar" aria-hidden="true">EC</div>
+                        <div>
+                            <p class="person__name">Sistema</p>
+                            <p class="person__role">Servicio automatizado de scoring y notificaciones</p>
+                            <p class="person__meta"><a href="mailto:sistema@espaciocomun.pe">sistema@espaciocomun.pe</a></p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Acciones globales -->
+            <section class="section">
+                <h2 class="section__title">Acciones rápidas</h2>
+                <div class="flex" style="flex-wrap: wrap;">
+                    <button class="btn btn--ghost" data-panel-action="exportar">Exportar listado</button>
+                    <button class="btn btn--ghost" data-panel-action="bloquear">Bloquear usuario</button>
+                    <a class="btn btn--primary" href="reservar.html">Crear reserva manual</a>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="site-footer__inner">
+                <div>
+                    <strong>Espacio Común</strong><br>
+                    Instituto Cultural<br>
+                    Av. La Cultura 1234, Cusco — Perú<br>
+                    <a href="mailto:reservas@espaciocomun.pe">reservas@espaciocomun.pe</a>
+                </div>
+                <div>
+                    <h4>Plataforma</h4>
+                    <ul>
+                        <li><a href="espacios.html">Espacios</a></li>
+                        <li><a href="reservar.html">Reservar</a></li>
+                        <li><a href="mis-reservas.html">Mis reservas</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="equipo.html">Equipo</a></li>
+                        <li><a href="panel.html">Panel administrativo</a></li>
+                        <li><a href="politicas.html">Políticas y privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="site-footer__bottom">
+                © <span data-year>2026</span> Instituto Cultural Espacio Común · Plataforma de reservas v2.3.1
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

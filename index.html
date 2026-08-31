@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de reservas de espacios del Instituto Cultural Espacio Común. Salas, auditorios y estudios para la comunidad.">
+    <title>Espacio Común — Inicio</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="app">
+
+    <!-- ========== HEADER ========== -->
+    <header class="site-header">
+        <div class="container site-header__inner">
+            <a class="brand" href="index.html">
+                <span class="brand__mark">EC</span>
+                <span>
+                    Espacio Común
+                    <span class="brand__sub">Instituto Cultural · Reservas</span>
+                </span>
+            </a>
+            <nav class="nav" aria-label="Navegación principal">
+                <a class="nav__link" href="index.html">Inicio</a>
+                <a class="nav__link" href="espacios.html">Espacios</a>
+                <a class="nav__link" href="reservar.html">Reservar</a>
+                <a class="nav__link" href="mis-reservas.html">Mis reservas</a>
+                <a class="nav__link" href="panel.html">Panel</a>
+                <a class="nav__link" href="equipo.html">Equipo</a>
+                <a class="nav__link" href="politicas.html">Políticas</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== BANNER DE ESTADO (PROBLEMA P06) ========== -->
+    <!-- PROBLEMA: P06 - DISPONIBILIDAD -->
+    <!-- El banner indica que el servicio NO está disponible por mantenimiento, -->
+    <!-- pero el resto de la página sigue ofreciendo reservar y mostrando  -->
+    <!-- espacios destacados como si todo funcionara normalmente.            -->
+    <div class="banner" role="status">
+        <div class="container banner__inner">
+            <svg class="banner__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M12 9v4"/><path d="M12 17h.01"/>
+                <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/>
+            </svg>
+            <span><strong>Servicio actualmente no disponible por mantenimiento.</strong> Estamos trabajando para restablecer el sistema. Disculpe las molestias.</span>
+        </div>
+    </div>
+
+    <!-- ========== MAIN ========== -->
+    <main class="app__main">
+        <div class="container">
+
+            <!-- Hero -->
+            <section class="hero">
+                <div>
+                    <div class="hero__eyebrow">Bienvenida · Ciclo 2026-I</div>
+                    <h1>Un lugar para crear, ensayar y encontrarnos.</h1>
+                    <p>Reserva auditorios, salas y estudios del Instituto Cultural Espacio Común en pocos pasos. La plataforma centraliza la disponibilidad de nuestros 7 espacios para investigadores, artistas, docentes y miembros de la comunidad.</p>
+                    <div class="hero__actions">
+                        <a class="btn btn--primary" href="reservar.html">Reservar un espacio</a>
+                        <a class="btn btn--ghost" href="espacios.html">Ver espacios disponibles</a>
+                    </div>
+                </div>
+                <div class="hero__image" aria-hidden="true"></div>
+            </section>
+
+            <!-- Estadísticas de uso -->
+            <section class="section">
+                <div class="section__head">
+                    <h2 class="section__title">Actividad reciente</h2>
+                    <span class="muted text-small">Actualizado hace 2 horas</span>
+                </div>
+                <div class="grid grid--4">
+                    <div class="stat">
+                        <div class="stat__label">Reservas esta semana</div>
+                        <div class="stat__value">42</div>
+                        <div class="stat__delta">+12 % vs. semana anterior</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat__label">Ocupación promedio</div>
+                        <div class="stat__value">68 %</div>
+                        <div class="stat__delta">+4 % vs. semana anterior</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat__label">Espacios activos</div>
+                        <div class="stat__value">7 / 8</div>
+                        <div class="stat__delta stat__delta--neg">1 cerrado</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat__label">Solicitudes pendientes</div>
+                        <div class="stat__value">5</div>
+                        <div class="stat__delta">3 hace más de 24 h</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Espacios destacados -->
+            <section class="section">
+                <div class="section__head">
+                    <h2 class="section__title">Espacios destacados</h2>
+                    <a href="espacios.html">Ver todos →</a>
+                </div>
+                <div class="grid grid--3">
+                    <article class="card card--hover">
+                        <span class="badge">Auditorio</span>
+                        <h3 class="card__title mt-1">Auditorio Principal</h3>
+                        <p class="muted text-small mb-0">Capacidad para 180 personas. Equipamiento de sonido e iluminación profesional. Piso 2, ala norte.</p>
+                    </article>
+                    <article class="card card--hover">
+                        <span class="badge">Sala</span>
+                        <h3 class="card__title mt-1">Sala de Ensayo «Haydn»</h3>
+                        <p class="muted text-small mb-0">Sala acústica tratada para agrupaciones musicales medianas. Capacidad para 25 músicos. Piso 1.</p>
+                    </article>
+                    <article class="card card--hover">
+                        <span class="badge">Estudio</span>
+                        <h3 class="card__title mt-1">Estudio de Grabación</h3>
+                        <p class="muted text-small mb-0">Estudio insonorizado con consola analógica y micrófonos de condensador. Reservas por bloque de 4 h.</p>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Próximos eventos -->
+            <section class="section">
+                <div class="section__head">
+                    <h2 class="section__title">Próximos eventos</h2>
+                    <a href="espacios.html">Más fechas →</a>
+                </div>
+                <div class="card">
+                    <div class="card__row">
+                        <div>
+                            <strong>Ciclo de música andina contemporánea</strong>
+                            <div class="muted text-small">Auditorio Principal · Apertura de puertas 19:30</div>
+                        </div>
+                        <span class="badge badge--muted">Jue 18 sep · 20:00</span>
+                    </div>
+                    <div class="card__row">
+                        <div>
+                            <strong>Taller: dirección de coro para aficionados</strong>
+                            <div class="muted text-small">Sala «Haydn» · Inscripción previa</div>
+                        </div>
+                        <span class="badge badge--muted">Sáb 20 sep · 10:00</span>
+                    </div>
+                    <div class="card__row">
+                        <div>
+                            <strong>Grabación EP «Voces del Rímac»</strong>
+                            <div class="muted text-small">Estudio de Grabación · Acceso por producción</div>
+                        </div>
+                        <span class="badge badge--muted">Lun–Vie 22–26 sep</span>
+                    </div>
+                    <div class="card__row">
+                        <div>
+                            <strong>Conferencia: patrimonio cultural y nuevas tecnologías</strong>
+                            <div class="muted text-small">Sala de Conferencias B · Entrada libre</div>
+                        </div>
+                        <span class="badge badge--muted">Mié 1 oct · 18:00</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cómo reservar -->
+            <section class="section">
+                <h2 class="section__title">¿Cómo reservar?</h2>
+                <div class="grid grid--3">
+                    <div class="card">
+                        <h3 class="card__title">1. Elige el espacio</h3>
+                        <p class="muted text-small mb-0">Revisa la disponibilidad en <a href="espacios.html">Espacios</a> y selecciona el que mejor se ajuste a tu actividad.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card__title">2. Completa el formulario</h3>
+                        <p class="muted text-small mb-0">Indica fecha, horario y motivo. Recibirás una confirmación por correo institucional.</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card__title">3. Asiste el día indicado</h3>
+                        <p class="muted text-small mb-0">Llega 10 minutos antes y presenta tu documento de identidad en recepción.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="site-footer__inner">
+                <div>
+                    <strong>Espacio Común</strong><br>
+                    Instituto Cultural<br>
+                    Av. La Cultura 1234, Cusco — Perú<br>
+                    <a href="mailto:reservas@espaciocomun.pe">reservas@espaciocomun.pe</a>
+                </div>
+                <div>
+                    <h4>Plataforma</h4>
+                    <ul>
+                        <li><a href="espacios.html">Espacios</a></li>
+                        <li><a href="reservar.html">Reservar</a></li>
+                        <li><a href="mis-reservas.html">Mis reservas</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="equipo.html">Equipo</a></li>
+                        <li><a href="panel.html">Panel administrativo</a></li>
+                        <li><a href="politicas.html">Políticas y privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="site-footer__bottom">
+                © <span data-year>2026</span> Instituto Cultural Espacio Común · Plataforma de reservas v2.3.1
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
