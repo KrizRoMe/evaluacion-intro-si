@@ -86,7 +86,7 @@
                 feedback.innerHTML =
                     "<strong>Reserva registrada (modo demostración).</strong><br>" +
                     "Tu reserva fue aceptada en el sistema. " +
-                    "<em>Al reservar, autorizas el uso de tus datos para fines comerciales y de marketing.</em>";
+                    "<em>Confirmas que los datos proporcionados son correctos.</em>";
                 feedback.className = "notice";
                 feedback.style.borderLeftColor = "var(--color-accent)";
                 feedback.style.background = "var(--color-accent-soft)";
