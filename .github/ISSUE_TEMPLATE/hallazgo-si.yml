@@ -1,0 +1,260 @@
+name: Hallazgo SI
+description: Formulario interactivo para documentar un hallazgo encontrado en el Sistema de Información.
+title: '[Hallazgo] '
+labels:
+- hallazgo-si
+body:
+- type: markdown
+  attributes:
+    value: '## Hallazgo
+
+
+      Describe brevemente qué problema encontraste en la aplicación. Sé concreto: qué pasa y qué debería pasar.'
+- type: textarea
+  id: hallazgo
+  attributes:
+    label: ¿Qué problema identificaste?
+    description: 1-3 oraciones describiendo el problema.
+    placeholder: 'Ej: El formulario permite reservar fechas pasadas sin validación.'
+  validations:
+    required: true
+- type: markdown
+  attributes:
+    value: '## Evidencia / ubicación'
+- type: dropdown
+  id: pagina
+  attributes:
+    label: ¿En qué página ocurre?
+    description: Selecciona la página donde se observa el problema.
+    options:
+    - Inicio (index.html)
+    - Espacios (espacios.html)
+    - Reservar (reservar.html)
+    - Mis reservas (mis-reservas.html)
+    - Panel (panel.html)
+    - Equipo (equipo.html)
+    - Políticas (politicas.html)
+    - Varias páginas
+  validations:
+    required: true
+- type: input
+  id: seccion
+  attributes:
+    label: ¿En qué sección específica?
+    description: 'Sé específico: header, formulario, tabla, footer, etc.'
+    placeholder: 'Ej: Formulario de reserva > campo Fecha'
+  validations:
+    required: true
+- type: textarea
+  id: reproducir
+  attributes:
+    label: ¿Cómo puedo comprobarlo?
+    description: Pasos para reproducir el problema. Qué botón clickear, qué opción elegir, qué texto buscar.
+    placeholder: '1. Ir a /reservar
+
+      2. En el campo Fecha seleccionar una fecha de hace 3 meses
+
+      3. El sistema la acepta sin error'
+  validations:
+    required: true
+- type: upload
+  id: captura
+  attributes:
+    label: Adjuntar captura (opcional)
+    description: Arrastra una imagen PNG/JPG o haz clic para seleccionar. Hasta 10MB.
+  validations:
+    required: false
+- type: markdown
+  attributes:
+    value: '## Concepto relacionado'
+- type: checkboxes
+  id: conceptos
+  attributes:
+    label: ¿A qué tema de la Unidad 1 se relaciona?
+    description: Marca todos los conceptos que apliquen.
+    options:
+    - label: Definición de Sistema de Información (Laudon)
+      required: false
+    - label: Modelo Entrada → Proceso → Salida
+      required: false
+    - label: Componentes del SI (Personas, Datos, Software, Hardware, Redes, Procesos)
+      required: false
+    - label: Roles en un SI (CIO, Arquitecto, Analista, Desarrollador, Admin BD, Soporte)
+      required: false
+    - label: Tipos de SI (TPS, MIS, DSS, ESS)
+      required: false
+    - label: Proceso vs Procedimiento
+      required: false
+    - label: Administración de SI
+      required: false
+    - label: Confidencialidad (CID)
+      required: false
+    - label: Integridad (CID)
+      required: false
+    - label: Disponibilidad (CID)
+      required: false
+    - label: Mantenimiento correctivo
+      required: false
+    - label: Mantenimiento preventivo
+      required: false
+    - label: Mantenimiento adaptativo
+      required: false
+    - label: Mantenimiento perfectivo
+      required: false
+    - label: 'Triada: Técnico → Legal → Ético'
+      required: false
+    - label: Privacidad vs Seguridad
+      required: false
+    - label: Datos personales y tratamiento
+      required: false
+    - label: Ley N° 29733 (principios)
+      required: false
+    - label: Derechos ARCO
+      required: false
+    - label: Responsabilidad organizacional
+      required: false
+    - label: Otro (explicar abajo)
+      required: false
+  validations:
+    required: true
+- type: textarea
+  id: concepto_explicacion
+  attributes:
+    label: Explica la relación con el concepto
+    description: ¿Por qué este hallazgo se conecta con el concepto marcado?
+    placeholder: Este hallazgo viola el principio de proporcionalidad porque...
+  validations:
+    required: true
+- type: markdown
+  attributes:
+    value: '## Justificación'
+- type: textarea
+  id: justificacion
+  attributes:
+    label: ¿Por qué es un problema?
+    description: Explica desde el punto de vista de Sistemas de Información por qué esta situación representa un problema.
+    placeholder: El SI debe asegurar la integridad de los datos...
+  validations:
+    required: true
+- type: markdown
+  attributes:
+    value: '## Impacto / riesgo'
+- type: textarea
+  id: impacto
+  attributes:
+    label: ¿Qué podría ocurrir si no se corrige?
+    description: Describe las consecuencias posibles.
+    placeholder: Pérdida de confianza de los usuarios...
+  validations:
+    required: true
+- type: checkboxes
+  id: afectados
+  attributes:
+    label: ¿A quiénes afecta?
+    description: Marca todos los afectados.
+    options:
+    - label: Usuarios finales
+      required: false
+    - label: Personal administrativo
+      required: false
+    - label: Equipo de desarrollo
+      required: false
+    - label: La organización / instituto
+      required: false
+    - label: Terceros
+      required: false
+    - label: Toda la comunidad
+      required: false
+  validations:
+    required: false
+- type: dropdown
+  id: probabilidad
+  attributes:
+    label: Probabilidad de que ocurra
+    options:
+    - Alta — es muy probable que ocurra
+    - Media — puede ocurrir en algún momento
+    - Baja — es poco probable pero posible
+  validations:
+    required: false
+- type: markdown
+  attributes:
+    value: '## Severidad'
+- type: dropdown
+  id: severidad
+  attributes:
+    label: Nivel de severidad
+    description: Selecciona el nivel y justifícalo abajo.
+    options:
+    - Alta — afecta a muchas personas o tiene impacto grave
+    - Media — afecta a algunos usuarios o tiene impacto moderado
+    - Baja — afecta a pocos o tiene impacto menor
+  validations:
+    required: true
+- type: textarea
+  id: severidad_justificacion
+  attributes:
+    label: Justifica tu severidad
+    description: ¿Por qué elegiste ese nivel?
+    placeholder: Lo clasifiqué como Alta porque expone datos personales de todos los usuarios sin autenticación...
+  validations:
+    required: true
+- type: markdown
+  attributes:
+    value: '## Propuesta de solución'
+- type: textarea
+  id: propuesta
+  attributes:
+    label: ¿Cómo debería solucionarse?
+    description: Solución concreta, razonable y verificable. NO digas solo 'mejorar el diseño'; sé específico.
+    placeholder: '1. Agregar atributo min al input de fecha
+
+      2. Validar en el servidor que la fecha sea futura
+
+      3. Mostrar mensaje de error claro al usuario'
+  validations:
+    required: true
+- type: checkboxes
+  id: recursos
+  attributes:
+    label: ¿Qué recursos se necesitan?
+    options:
+    - label: Cambio en el código de la aplicación
+      required: false
+    - label: Cambio en el diseño / UI
+      required: false
+    - label: Cambio en la configuración del servidor
+      required: false
+    - label: Nuevo proceso o procedimiento
+      required: false
+    - label: Capacitación al equipo
+      required: false
+    - label: Cambio en políticas de la organización
+      required: false
+    - label: No requiere cambios técnicos
+      required: false
+  validations:
+    required: false
+- type: markdown
+  attributes:
+    value: '## Etiquetas adicionales'
+- type: checkboxes
+  id: categorias
+  attributes:
+    label: ¿A qué categoría general pertenece?
+    description: Etiquetas opcionales. La etiqueta hallazgo-si ya se aplica automáticamente.
+    options:
+    - label: componentes-si
+      required: false
+    - label: riesgo-cid
+      required: false
+    - label: mantenimiento
+      required: false
+    - label: etica
+      required: false
+    - label: privacidad
+      required: false
+    - label: proteccion-datos
+      required: false
+  validations:
+    required: false

@@ -1,0 +1,18 @@
+{
+  "name": "espacio-comun-reservas",
+  "version": "2.3.1",
+  "private": true,
+  "description": "Sistema de reservas del Instituto Cultural Espacio Común (campo de auditoría para el curso Introducción a Sistemas de Información).",
+  "scripts": {
+    "start": "npx serve . -l 3000",
+    "dev": "npx serve . -l 3000 --no-clipboard"
+  },
+  "keywords": [
+    "evaluacion",
+    "sistemas-de-informacion",
+    "reservas",
+    "auditoria"
+  ],
+  "author": "Instituto Cultural Espacio Común",
+  "license": "UNLICENSED"
+}
