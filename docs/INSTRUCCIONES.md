@@ -20,9 +20,9 @@ Tu tarea es **detectar problemas reales**, justificarlos y proponer soluciones.
 
 ## 📝 Entregable
 
-**Exactamente 3 GitHub Issues** en este repositorio, usando la plantilla **"Hallazgo SI"** y la etiqueta **`hallazgo-si`**.
+**Exactamente 4 GitHub Issues** en este repositorio, usando la plantilla **"Hallazgo SI"** y la etiqueta **`hallazgo-si`**.
 
-**No 2. No 4. No 5. Exactamente 3.**
+**No 3. No 5. No 6. Exactamente 4.**
 
 ## ✏️ Cada Issue debe incluir
 
@@ -34,11 +34,11 @@ Tu tarea es **detectar problemas reales**, justificarlos y proponer soluciones.
 6. **Severidad** — Baja, Media o Alta (con justificación).
 7. **Propuesta** — cómo solucionarlo (concreta y razonable).
 
-## � Recuerda
+## 🧠 Recuerda
 
 - No necesitas encontrar **todos** los problemas.
 - **La calidad del análisis importa más que la cantidad.**
-- Selecciona tus **3 mejores hallazgos**.
+- Selecciona tus **4 mejores hallazgos**.
 - Puedes explorar la aplicación libremente: no hay un orden correcto.
 - No necesitas conocimientos avanzados de programación.
 - Usa tus propias palabras. La claridad es más importante que la terminología técnica.
@@ -65,5 +65,5 @@ Tu tarea es **detectar problemas reales**, justificarlos y proponer soluciones.
 
 - No crear Issues que no describan un problema real.
 - No inventar problemas que no puedas justificar con evidencia.
-- No usar la Issues para hacer consultas o preguntas al docente.
+- No usar las Issues para hacer consultas o preguntas al docente.
 - No modificar el código de la aplicación.

@@ -72,13 +72,9 @@
                  integridad de los datos en el lado del cliente.
                  ============================================================ -->
 
-            <!-- ============================================================
-                 PROBLEMA: P03 - INCONSISTENCIA EN DATOS
-                 La reserva de "Carlos Quispe Mamani" tiene como fecha
-                 "2026-02-30", una fecha imposible: febrero solo tiene
-                 28 días (29 en año bisiesto). Ningún proceso valida
-                 el dato al persistirlo ni al mostrarlo.
-                 ============================================================ -->
+            <!-- P01 - inconsistencia: "Defensa de proyecto cultural" reservada en "Estudio de Grabación"
+                 (espacio pensado para música/grabación, no para defensas académicas).
+                 P05 - integridad: cada celda es contenteditable, editable sin auth desde el navegador. -->
 
             <section class="section">
                 <div class="table-wrap">
@@ -114,14 +110,12 @@
                             </tr>
 
                             <tr data-fila data-estado="confirmada">
-                                <!-- ============================================
-                                     PROBLEMA: P03 - fecha imposible 2026-02-30
-                                     ============================================ -->
-                                <td contenteditable="true">2026-02-30</td>
-                                <td contenteditable="true">17:00</td>
+                                <!-- P01 - Defensa de proyecto cultural en Estudio de Grabación -->
+                                <td contenteditable="true">2026-10-12</td>
+                                <td contenteditable="true">11:00</td>
                                 <td contenteditable="true">Estudio de Grabación</td>
-                                <td contenteditable="true">Grabación demo EP</td>
-                                <td contenteditable="true">Carlos Quispe Mamani</td>
+                                <td contenteditable="true">Defensa de proyecto cultural</td>
+                                <td contenteditable="true">Miguel Ángel Torres</td>
                                 <td><span class="badge badge--ok">Confirmada</span></td>
                             </tr>
 

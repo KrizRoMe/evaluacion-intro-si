@@ -2,13 +2,12 @@
 
 ## Datos del estudiante
 
-- **Nombre:** ______________________________
-- **Código:** ______________________________
+- **Nombre completo:** ______________________________
 - **Carrera:** ______________________________
 
 ## Objetivo
 
-Analizar un Sistema de Información y documentar **tres hallazgos** mediante GitHub Issues.
+Analizar un Sistema de Información y documentar **cuatro hallazgos** mediante GitHub Issues.
 
 ## Issues
 
@@ -42,9 +41,19 @@ Analizar un Sistema de Información y documentar **tres hallazgos** mediante Git
 
 ---
 
+### Issue 4
+
+**Título:** ______________________________________
+
+**Concepto principal:** ______________________________________
+
+**Severidad:** ______________________________________
+
+---
+
 ## Reflexión
 
-**¿Cuál de tus tres hallazgos consideras más importante? ¿Por qué?**
+**¿Cuál de tus cuatro hallazgos consideras más importante? ¿Por qué?**
 
 (8–12 líneas)
 

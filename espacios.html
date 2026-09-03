@@ -137,11 +137,12 @@
 
                     <!-- ====================================================
                          Espacio 6
-                         PROBLEMA: P07 - MANTENIMIENTO CORRECTIVO
-                         La capacidad muestra "-1 personas", un dato
-                         claramente roto que requiere mantenimiento
-                         correctivo. Posible causa: error de carga
-                         desde el sistema legacy, sin validación.
+                         P06 - DISPONIBILIDAD
+                         El espacio aparece como seleccionable (botón
+                         "Reservar") pero el sistema muestra "Próximamente:
+                         reservas disponibles", una incoherencia entre la
+                         disponibilidad que ofrece la UI y la que realmente
+                         entrega el sistema.
                          ==================================================== -->
                     <article class="card card--hover">
                         <span class="badge badge--warn">⚠ Datos pendientes</span>
@@ -157,7 +158,8 @@
                         <div class="card__row">
                             <span>Tarifa</span><strong>S/ 100 / bloque</strong>
                         </div>
-                        <a class="btn btn--ghost btn--small btn--block mt-2" href="reservar.html">Reservar</a>
+                        <button class="btn btn--ghost btn--small btn--block mt-2" type="button" disabled aria-disabled="true">Próximamente: reservas disponibles</button>
+                        <p class="text-tiny faint mt-1">Este espacio aún no se puede reservar desde la plataforma.</p>
                     </article>
 
                     <!-- Espacio 7 -->

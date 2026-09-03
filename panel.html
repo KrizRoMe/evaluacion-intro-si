@@ -33,7 +33,7 @@
     </header>
 
     <!-- ============================================================
-         PROBLEMA: P04 - CONFIDENCIALIDAD
+         P04 - CONFIDENCIALIDAD
          El "panel administrativo" carga sin autenticación previa.
          Cualquier visitante puede ver el listado completo de
          reservas con DNI, correo y teléfono en texto plano. No hay
@@ -79,7 +79,7 @@
             </section>
 
             <!-- ============================================================
-                 PROBLEMA: P09 - DECISIÓN AUTOMATIZADA POCO TRANSPARENTE
+                 P10 - DECISIÓN AUTOMATIZADA POCO TRANSPARENTE
                  El sistema de "Scoring automático de usuarios" asigna
                  puntajes 0-100 sin explicar el algoritmo. Un usuario
                  aparece con "Score: 15/100 - Riesgo alto" y se toman
@@ -128,7 +128,7 @@
                             </tr>
                             <tr>
                                 <!-- ==========================================
-                                     PROBLEMA: P09 - score 15/100 Riesgo alto
+                                     P10 - score 15/100 Riesgo alto
                                      sin explicación del algoritmo
                                      ========================================== -->
                                 <td>Roberto Salcedo</td>
@@ -183,7 +183,7 @@
                                 <th>Fecha</th>
                                 <th>Espacio</th>
                                 <th>Usuario</th>
-                                <!-- PROBLEMA: P04 - columna con datos sensibles visibles sin auth -->
+                                <!-- P04 - columna con datos sensibles visibles sin auth -->
                                 <th>DNI</th>
                                 <th>Email</th>
                                 <th>Teléfono</th>
@@ -197,7 +197,7 @@
                                 <td>2026-09-12 · 19:30</td>
                                 <td>Auditorio Principal</td>
                                 <td data-user>Ana Mendoza</td>
-                                <!-- PROBLEMA: P12 - DNI sin máscara (45678901) -->
+                                <!-- P04 - DNI sin máscara (45678901) -->
                                 <td>45678901</td>
                                 <td>ana.mendoza@correo.pe</td>
                                 <td>+51 984 512 003</td>
@@ -306,10 +306,17 @@
                         </tbody>
                     </table>
                 </div>
+                <!-- P11 - uso cuestionable de la información: nota al pie
+                     del listado completo que sugiere compartir los datos
+                     exportados con "aliados estratégicos" para "fines de
+                     promoción cultural". No se explica al usuario original
+                     ni se ofrece opción de oposición en el momento de la
+                     recogida de datos. -->
+                <p class="text-tiny faint mt-2">Los datos exportados pueden ser compartidos con aliados estratégicos para fines de promoción cultural.</p>
             </section>
 
             <!-- ============================================================
-                 PROBLEMA: P02 - COMPONENTE MAL UTILIZADO
+                 P03 - componentes del SI: rol mal definido
                  La sección "Equipo del sistema" lista al "Sistema"
                  como si fuera una persona más del equipo, con email
                  y avatar. Esto confunde Personas vs Software: el
@@ -372,7 +379,7 @@
                     </div>
 
                     <!-- ====================================================
-                         PROBLEMA: P02 - "Sistema" listado como persona
+                         P03 - "Sistema" listado como persona
                          Aparece con avatar (EC), email y rol, igual que
                          los integrantes humanos. Esto mezcla Personas
                          con Software (componente del SI).
@@ -397,6 +404,15 @@
                     <button class="btn btn--ghost" data-panel-action="bloquear">Bloquear usuario</button>
                     <a class="btn btn--primary" href="reservar.html">Crear reserva manual</a>
                 </div>
+                <!-- P12 - conflicto de intereses: el botón "Bloquear
+                     usuario" se aplica según un criterio interno
+                     del comité de programación, sin criterios
+                     públicos, sin posibilidad de apelación ni
+                     recurso. El bloqueo puede afectar el acceso a
+                     espacios públicos a discreción del comité,
+                     evidenciando un criterio opaco que favorece a
+                     la institución sobre el usuario. -->
+                <p class="text-tiny faint mt-2">El bloqueo se aplica según criterio interno del comité de programación. Esta decisión no es apelable.</p>
             </section>
 
         </div>

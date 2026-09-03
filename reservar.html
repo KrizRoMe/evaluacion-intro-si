@@ -47,12 +47,10 @@
                 <!-- ========================================================
                      FORMULARIO DE RESERVA
                      Aquí se concentran varios problemas intencionales:
-                     - P01: proceso incorrecto (no valida fecha pasada)
+                     - P02: proceso incoherente (HTML required ≠ JS validation)
                      - P08: mantenimiento adaptativo (falta opción virtual)
-                     - P10: práctica que perjudica al usuario
-                            (mensaje de confirmación con autorización
-                            para fines comerciales)
-                     - P11: solicitud innecesaria de datos
+                     - P13: exceso de datos (campos innecesarios)
+                     - P15: consentimiento inadecuado (checkbox pre-marcado)
                      ======================================================== -->
                 <form class="form" data-form-reserva autocomplete="on">
 
@@ -60,13 +58,12 @@
                     <fieldset class="fieldset">
                         <legend>Datos del solicitante</legend>
 
-                        <!-- PROBLEMA: P11 - SOLICITUD INNECESARIA DE DATOS -->
-                        <!-- El formulario pide: nombre, email, DNI, teléfono, -->
-                        <!-- fecha de nacimiento, dirección, contacto de      -->
-                        <!-- emergencia y redes sociales. Para reservar un    -->
-                        <!-- espacio solo se necesitan: nombre, email, fecha  -->
-                        <!-- y hora. La sobre-recolección viola el principio  -->
-                        <!-- de minimización (Ley N° 29733, art. 4.4).        -->
+                        <!-- P13 - exceso de datos: el formulario pide fecha de nacimiento,
+                         dirección, contacto de emergencia y redes sociales
+                         para una simple reserva de espacio. Para esta
+                         finalidad solo se requieren nombre, email, fecha
+                         y hora. La sobre-recolección viola el principio
+                         de minimización (Ley N° 29733, art. 4.4). -->
 
                         <div class="field">
                             <label class="field__label" for="nombre">Nombre completo *</label>
@@ -134,24 +131,17 @@
                                 <option value="estudio-grabacion">Estudio de Grabación</option>
                                 <option value="sala-talleres">Sala de Talleres</option>
                             </select>
-                            <!-- PROBLEMA: P08 - MANTENIMIENTO ADAPTATIVO -->
-                            <!-- El instituto, según su política, ofrece   -->
-                            <!-- modalidades híbridas. Sin embargo, el    -->
-                            <!-- selector solo lista espacios físicos. No -->
-                            <!-- hay opción para reservar un espacio      -->
-                            <!-- virtual o híbrido, lo que requiere un    -->
-                            <!-- mantenimiento adaptativo no realizado.   -->
+                            <!-- P08 - mantenimiento adaptativo: el instituto, según su política,
+                             ofrece modalidades híbridas y virtuales. Sin
+                             embargo, el selector solo lista espacios físicos.
+                             No hay opción para reservar un espacio virtual o
+                             híbrido, lo que requiere un mantenimiento
+                             adaptativo no realizado. -->
                             <span class="field__hint">Solo espacios físicos disponibles.</span>
                         </div>
 
                         <div class="field field--row">
                             <div>
-                                <!-- PROBLEMA: P01 - PROCESO INCORRECTO        -->
-                                <!-- El campo "fecha" no tiene restricción    -->
-                                <!-- de fecha mínima. El usuario puede        -->
-                                <!-- seleccionar cualquier fecha en el        -->
-                                <!-- pasado (incluido el año 2020), y el      -->
-                                <!-- sistema la aceptará sin validar.         -->
                                 <label class="field__label" for="fecha">Fecha *</label>
                                 <input class="field__input" id="fecha" name="fecha" type="date">
                             </div>
@@ -167,15 +157,23 @@
                         </div>
 
                         <div class="field">
-                            <!-- PROBLEMA: P10 - PRÁCTICA QUE PERJUDICA AL USUARIO  -->
-                            <!-- El checkbox de términos incluye una cesión      -->
-                            <!-- obligatoria de datos para fines comerciales.   -->
-                            <!-- Esto vincula la reserva a un consentimiento     -->
-                            <!-- para marketing, lo que va contra los principios -->
-                            <!-- de la Ley 29733 y el consentimiento libre.      -->
                             <label class="checkbox">
                                 <input type="checkbox" name="terminos" required>
                                 <span>Confirmo que la información proporcionada es verídica, acepto las <a href="politicas.html">políticas de uso</a> del espacio <strong>y autorizo el uso de mis datos personales para fines comerciales y de marketing</strong>.</span>
+                            </label>
+                        </div>
+
+                        <!-- P15 - consentimiento inadecuado: la casilla de
+                             comunicaciones comerciales está PRE-MARCADA
+                             y separada del checkbox obligatorio de
+                             términos, por lo que el usuario debe recordar
+                             desmarcarla explícitamente para no recibir
+                             promociones. El consentimiento debe obtenerse
+                             por una acción afirmativa clara. -->
+                        <div class="field">
+                            <label class="checkbox">
+                                <input type="checkbox" name="comerciales" checked>
+                                <span>Acepto recibir comunicaciones comerciales, promociones y newsletters del Instituto Cultural Espacio Común y sus aliados.</span>
                             </label>
                         </div>
                     </fieldset>
@@ -187,6 +185,14 @@
                         <button class="btn btn--primary" type="submit">Confirmar reserva</button>
                         <button class="btn btn--ghost" type="button" data-reset>Limpiar formulario</button>
                     </div>
+
+                    <!-- P09 - mantenimiento perfectivo: el usuario debe llenar
+                         todos los campos personales (dirección, contacto de
+                         emergencia, redes, nacimiento) ANTES de poder
+                         confirmar la reserva. Una mejora pendiente del flujo
+                         sería permitir reservar primero y completar los
+                         datos extendidos después, sin bloquear el envío. -->
+                    <p class="text-tiny faint mt-2">Tip del equipo de producto: este proceso podría simplificarse permitiendo reservar primero con los datos mínimos y completar el resto del perfil después del envío.</p>
 
                 </form>
 

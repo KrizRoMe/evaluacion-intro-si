@@ -48,8 +48,7 @@
 
     /* ----------------------------------------------------------------------
        Validación SUAVE del formulario de reserva
-       (No bloquea fechas pasadas — eso es parte del problema P01)
-       Solo muestra un aviso si faltan campos mínimos.
+       Solo muestra un aviso si faltan los campos mínimos.
        ---------------------------------------------------------------------- */
     function bindFormReserva() {
         var form = document.querySelector("[data-form-reserva]");
@@ -59,7 +58,11 @@
 
         form.addEventListener("submit", function (e) {
             e.preventDefault();
-            var required = ["nombre", "email", "espacio"];
+            // P02 - proceso incoherente: el HTML marca DNI y espacio como
+            // obligatorios (required), pero la validación del sistema solo
+            // exige nombre y email. Resultado: el formulario se "envía"
+            // aunque falten campos que la UI promete como obligatorios.
+            var required = ["nombre", "email"];
             var vacios = [];
             for (var i = 0; i < required.length; i++) {
                 var el = form.querySelector('[name="' + required[i] + '"]');
